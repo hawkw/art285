@@ -28,6 +28,7 @@ public void setup() {
 }
 
 public void draw() {
+  strokeWeight(2);
   for (Node root: roots) {
     pushMatrix();
       translate(root.x, root.y);
@@ -39,7 +40,7 @@ public void draw() {
 }
 
 public void mouseClicked() {
-   print("x: " + mouseX + " y: " + mouseY + "\n");
+  //  print("x: " + mouseX + " y: " + mouseY + "\n");
    roots.add(new Node( 0, 0
                      , mouseX, mouseY
                      , color( map(mouseX, 0, width, 0, 360)
@@ -51,7 +52,7 @@ public void mouseClicked() {
 
 
 
-final int NODE_DIAM = 10;
+final int NODE_DIAM = 13;
 final int BRANCH_LEN = 75;
 final float VARIANCE = 50;
 
@@ -62,15 +63,15 @@ class Node {
   List<Node> children;
   int generation;
   int myColor;
-  
+
   public Node child() {
-    return new Node ( generation == 0 ? random(0, 360) 
+    return new Node ( generation == 0 ? random(0, 360)
                                       : random(-VARIANCE, VARIANCE)
                     , generation + 1
                     , 0, 0
                     , myColor);
   }
- 
+
   Node(float theta, int generation, float x, float y, int myColor) {
     this.x = x;
     this.y = y;
@@ -79,7 +80,7 @@ class Node {
     this.generation = generation;
     this.myColor = myColor;
   }
-  
+
 
   public void draw() {
       for (Node child: children) {
@@ -93,7 +94,7 @@ class Node {
       }
       ellipse(0, 0, NODE_DIAM, NODE_DIAM);
   }
-  
+
   public void do_update() {
     for (Node child: children) {
       child.do_update();
@@ -101,8 +102,8 @@ class Node {
     if ((random(0, 50) - (generation * 20)) > (children.size() * 10)) {
       children.add(child());
     }
-      
-  
+
+
   }
 }
   public void settings() {  size(1000, 800);  smooth(); }

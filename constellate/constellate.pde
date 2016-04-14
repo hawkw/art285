@@ -9,6 +9,7 @@ void setup() {
 }
 
 void draw() {
+  strokeWeight(2);
   for (Node root: roots) {
     pushMatrix();
       translate(root.x, root.y);
@@ -20,7 +21,7 @@ void draw() {
 }
 
 void mouseClicked() {
-   print("x: " + mouseX + " y: " + mouseY + "\n");
+  //  print("x: " + mouseX + " y: " + mouseY + "\n");
    roots.add(new Node( 0, 0
                      , mouseX, mouseY
                      , color( map(mouseX, 0, width, 0, 360)
